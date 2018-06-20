@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * base_report_to_printer
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,11 +12,12 @@ msgstr ""
 "PO-Revision-Date: 2018-01-19 17:25+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: hr\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: base_report_to_printer
 #: selection:printing.job,job_state:0
@@ -272,11 +273,11 @@ msgstr "Greška pri slanju dokumenta na pisač"
 #: code:addons/base_report_to_printer/models/printing_server.py:42
 #, python-format
 msgid ""
-"Failed to connect to the CUPS server on %s:%s. Check that the CUPS server is"
-" running and that you can reach it from the Odoo server."
+"Failed to connect to the CUPS server on %s:%s. Check that the CUPS server is "
+"running and that you can reach it from the Odoo server."
 msgstr ""
-"Neuspjelo povezivanje na CUPS poslužitelj na %s:%s. Provjerite da li je CUPS"
-" poslužitelj pokrenut i da li mu možete pristupiti sa Odoo poslužitelja."
+"Neuspjelo povezivanje na CUPS poslužitelj na %s:%s. Provjerite da li je CUPS "
+"poslužitelj pokrenut i da li mu možete pristupiti sa Odoo poslužitelja."
 
 #. module: base_report_to_printer
 #: selection:printing.job,job_state_reason:0
