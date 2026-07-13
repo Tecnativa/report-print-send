@@ -39,7 +39,11 @@
                 </header>
             </xpath>
             <xpath expr="//sheet/group[1]" position="inside">
-                <field name="server_id" invisible="backend != 'cups'" />
+                <field
+                    name="server_id"
+                    invisible="backend != 'cups'"
+                    required="backend == 'cups'"
+                />
             </xpath>
             <xpath expr="//group[@name='name']" position="after">
                 <group col="4" colspan="4" name="default" invisible="backend != 'cups'">

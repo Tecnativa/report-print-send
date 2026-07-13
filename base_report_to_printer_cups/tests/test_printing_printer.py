@@ -3,6 +3,8 @@
 
 from unittest import mock
 
+from odoo.exceptions import ValidationError
+
 from odoo.addons.base_report_to_printer.tests.test_printing_printer import (
     TestPrintingPrinterBase,
 )
@@ -49,3 +51,11 @@ class TestPrintingPrinterBaseCups(TestPrintingPrinterBase):
         self.printer = self.new_record()
         cups_conn_mock.return_value.printTestPage.return_value = True
         self.assertTrue(self.printer.print_test_page())
+
+    def test_server_required_for_cups_printers(self):
+        """Only printers using the CUPS backend need a server"""
+        printer = self.new_record()
+        with self.assertRaises(ValidationError):
+            printer.server_id = False
+        printer.write({"backend": "base", "server_id": False})
+        self.assertFalse(printer.server_id)

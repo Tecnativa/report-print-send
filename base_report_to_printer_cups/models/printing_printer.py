@@ -50,6 +50,16 @@ class PrintingPrinter(models.Model):
         ondelete={"cups": "cascade"},
     )
 
+    @api.constrains("server_id", "backend")
+    def _check_server_id(self):
+        for printer in self:
+            if printer.backend == "cups" and not printer.server_id:
+                raise exceptions.ValidationError(
+                    self.env._(
+                        "Server is required for printers using the CUPS backend."
+                    )
+                )
+
     @api.depends("server_id.multi_thread")
     def _compute_multi_thread(self):
         for printer in self:
