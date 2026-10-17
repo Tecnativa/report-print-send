@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="printer_update_wizard" model="ir.ui.view">
         <field name="name">printing.printer.update.wizard</field>
@@ -29,9 +29,9 @@
         <field name="target">new</field>
     </record>
     <menuitem
+        id="menu_printer_update_wizard"
         action="action_printer_update_wizard"
         sequence="40"
-        id="menu_printer_update_wizard"
         parent="base_report_to_printer.printing_menu"
     />
 </odoo>

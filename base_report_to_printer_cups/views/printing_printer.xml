@@ -1,6 +1,6 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="printing_printer_view_form_inherit_cups">
+    <record id="printing_printer_view_form_inherit_cups" model="ir.ui.view">
         <field name="name">printing.printer.form (in base_report_to_printer)</field>
         <field
             name="inherit_id"
@@ -73,7 +73,7 @@
             </xpath>
         </field>
     </record>
-    <record model="ir.ui.view" id="printing_printer_view_tree_inherit_cups">
+    <record id="printing_printer_view_tree_inherit_cups" model="ir.ui.view">
         <field name="name">printing.printer.tree</field>
         <field
             name="inherit_id"
