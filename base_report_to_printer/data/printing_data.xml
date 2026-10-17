@@ -1,11 +1,11 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <!-- printing.action -->
-    <record model="printing.action" id="printing_action_1">
+    <record id="printing_action_1" model="printing.action">
         <field name="name">Send to Printer</field>
         <field name="action_type">server</field>
     </record>
-    <record model="printing.action" id="printing_action_2">
+    <record id="printing_action_2" model="printing.action">
         <field name="name">Send to Client</field>
         <field name="action_type">client</field>
     </record>

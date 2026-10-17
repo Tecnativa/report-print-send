@@ -1,13 +1,13 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <menuitem
-        name="Printing"
         id="printing_menu"
+        name="Printing"
         sequence="1"
         parent="base.menu_administration"
         groups="printing_group_manager"
     />
-    <record model="ir.ui.view" id="printing_printer_view_form">
+    <record id="printing_printer_view_form" model="ir.ui.view">
         <field name="name">printing.printer.form (in base_report_to_printer)</field>
         <field name="model">printing.printer</field>
         <field name="arch" type="xml">
@@ -33,7 +33,7 @@
             </form>
         </field>
     </record>
-    <record model="ir.ui.view" id="printing_printer_view_tree">
+    <record id="printing_printer_view_tree" model="ir.ui.view">
         <field name="name">printing.printer.tree (in base_report_to_printer)</field>
         <field name="model">printing.printer</field>
         <field name="arch" type="xml">
@@ -44,7 +44,7 @@
             </list>
         </field>
     </record>
-    <record model="ir.ui.view" id="printing_printer_view_search">
+    <record id="printing_printer_view_search" model="ir.ui.view">
         <field name="name">printing.printer.search (in base_report_to_printer)</field>
         <field name="model">printing.printer</field>
         <field name="arch" type="xml">
@@ -59,16 +59,16 @@
             </search>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="printing_printer_action">
+    <record id="printing_printer_action" model="ir.actions.act_window">
         <field name="name">Show Printers</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">printing.printer</field>
         <field name="view_mode">list,form</field>
     </record>
     <menuitem
+        id="printing_printer_menu"
         name="Printers"
         sequence="20"
-        id="printing_printer_menu"
         parent="printing_menu"
         action="printing_printer_action"
     />

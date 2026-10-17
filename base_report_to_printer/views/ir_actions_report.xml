@@ -1,6 +1,6 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record model="ir.ui.view" id="act_report_xml_view">
+    <record id="act_report_xml_view" model="ir.ui.view">
         <field name="name">ir.actions.report.form (in base_report_to_printer)</field>
         <field name="model">ir.actions.report</field>
         <field name="inherit_id" ref="base.act_report_xml_view" />
@@ -40,7 +40,7 @@
             </page>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="base.ir_action_report">
+    <record id="base.ir_action_report" model="ir.actions.act_window">
         <field name="context">{'active_test': False}</field>
     </record>
 </odoo>
