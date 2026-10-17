@@ -3,8 +3,8 @@
  * License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). */
 import {Component, onWillStart} from "@odoo/owl";
 import {registry} from "@web/core/registry";
-import {user} from "@web/core/user";
 import {useService} from "@web/core/utils/hooks";
+import {user} from "@web/core/user";
 
 export class SelectPrinterMenu extends Component {
     setup() {

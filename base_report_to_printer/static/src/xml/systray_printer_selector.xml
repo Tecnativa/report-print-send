@@ -7,11 +7,12 @@
                 name="printer_selector"
                 title="Select user printer"
                 href="#"
-                t-on-click="onClickSelectPrinter"
-                t-if="isPrinterUser"
+                t-on-click="this.onClickSelectPrinter"
+                t-if="this.isPrinterUser"
             >
                 <i
-                    class="fa fa-lg fa-print"
+                    class="oi"
+                    data-icon="print"
                     role="img"
                     aria-label="Select user printer"
                 />

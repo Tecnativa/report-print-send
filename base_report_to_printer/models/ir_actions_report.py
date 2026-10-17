@@ -90,18 +90,18 @@ class IrActionsReport(models.Model):
         printer_obj = self.env["printing.printer"]
         user = self.env.user
         printer = self._get_user_default_printer(user)
-        return dict(
-            action=user.printing_action or "client",
-            printer=printer or printer_obj.get_default(),
-            input_tray=str(user.printer_input_tray_id.system_name)
+        return {
+            "action": user.printing_action or "client",
+            "printer": printer or printer_obj.get_default(),
+            "input_tray": str(user.printer_input_tray_id.system_name)
             if user.printer_input_tray_id
             else False,
-            output_tray=(
+            "output_tray": (
                 str(user.printer_output_tray_id.system_name)
                 if user.printer_output_tray_id
                 else False
             ),
-        )
+        }
 
     def _get_report_default_print_behaviour(self):
         result = {}
@@ -156,13 +156,12 @@ class IrActionsReport(models.Model):
         else:
             try:
                 return self.print_document(record_ids, data=data)
-            except Exception:
+            except Exception:  # noqa: BLE001
                 return
 
     def print_document_threaded(self, report_id, record_ids, data):
-        with Registry(self._cr.dbname).cursor() as cr:
-            self = self.with_env(self.env(cr=cr))
-            report = self.env["ir.actions.report"].browse(report_id)
+        with Registry(self.env.cr.dbname).cursor() as cr:
+            report = self.env(cr=cr)["ir.actions.report"].browse(report_id)
             report.print_document(record_ids, data)
 
     def print_document(self, record_ids, data=None):
@@ -179,7 +178,7 @@ class IrActionsReport(models.Model):
                 )
             )
         method_name = f"_render_qweb_{report_type}"
-        document, doc_format = getattr(
+        document, _doc_format = getattr(
             self.with_context(must_skip_send_to_printer=True), method_name
         )(self.report_name, record_ids, data=data)
         behaviour = self.behaviour()
@@ -214,14 +213,12 @@ class IrActionsReport(models.Model):
         """
         if self.env.context.get("must_skip_send_to_printer"):
             return False
-        if (
+        return bool(
             behaviour["action"] == "server"
             and printer
             and document
             and not behaviour.get("printer_exception")
-        ):
-            return True
-        return False
+        )
 
     def report_action(self, docids, data=None, config=True):
         res = super().report_action(docids, data=data, config=config)
