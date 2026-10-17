@@ -7,7 +7,7 @@
 
 {
     "name": "Report to printer CUPS",
-    "version": "19.0.0.2.0",
+    "version": "20.0.1.0.0",
     "category": "Generic Modules/Base",
     "author": "Agile Business Group & Domsense, Pegueroles SCP, NaN,"
     " LasLabs, Camptocamp, Odoo Community Association (OCA),"
@@ -17,8 +17,7 @@
     "depends": ["base_report_to_printer"],
     "data": [
         "data/printing_data.xml",
-        "security/security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/printing_printer.xml",
         "views/printing_server.xml",
         "views/printing_job.xml",

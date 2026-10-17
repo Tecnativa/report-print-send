@@ -31,7 +31,7 @@ class IrActionsReportCups(models.Model):
                     "server-error",
                     "unavailable",
                 ]
-            except Exception:
+            except Exception:  # noqa: BLE001
                 printer_exception = True
             if printer_exception and not self.env.context.get("skip_printer_exception"):
                 res["printer_exception"] = True

@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
-from datetime import datetime
+from datetime import UTC, datetime
 
 from odoo import exceptions, fields, models
 
@@ -69,7 +69,7 @@ class PrintingServer(models.Model):
                     cups.setPasswordCB(pw_callback)
 
             connection = cups.Connection(host=self.address, port=self.port)
-        except Exception:
+        except Exception:  # noqa: BLE001
             message = self.env._(
                 "Failed to connect to the CUPS server on %(address)s:%(port)s. "
                 "Check that the CUPS server is running and that "
@@ -140,9 +140,8 @@ class PrintingServer(models.Model):
         return res
 
     def action_update_jobs(self):
-        if not self:
-            self = self.search([("active", "=", True)])
-        return self.update_jobs()
+        servers = self or self.search([("active", "=", True)])
+        return servers.update_jobs()
 
     def update_jobs(self, which="all", first_job_id=-1):
         job_obj = self.env["printing.job"]
@@ -220,19 +219,20 @@ class PrintingServer(models.Model):
                     "active": True,
                     "job_media_progress": job_data.get("job-media-progress", 0),
                     "job_state": mapping.get(job_data.get("job-state"), "unknown"),
-                    "job_state_reason": job_data.get("job-state-reasons", ""),
+                    # Empty is not a valid value for selection fields
+                    "job_state_reason": job_data.get("job-state-reasons") or False,
                     "time_at_creation": datetime.fromtimestamp(
-                        job_data.get("time-at-creation", 0)
-                    ),
+                        job_data.get("time-at-creation", 0), UTC
+                    ).replace(tzinfo=None),
                 }
                 if job_data.get("time-at-processing"):
                     cups_job_values["time_at_processing"] = datetime.fromtimestamp(
-                        job_data["time-at-processing"]
-                    )
+                        job_data["time-at-processing"], UTC
+                    ).replace(tzinfo=None)
                 if job_data.get("time-at-completed"):
                     cups_job_values["time_at_completed"] = datetime.fromtimestamp(
-                        job_data["time-at-completed"]
-                    )
+                        job_data["time-at-completed"], UTC
+                    ).replace(tzinfo=None)
 
                 job_values = {
                     fieldname: value

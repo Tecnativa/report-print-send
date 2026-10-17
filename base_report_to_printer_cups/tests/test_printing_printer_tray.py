@@ -80,7 +80,7 @@ class TestPrintingPrinterCups(TestPrintingPrinter):
 
     def mock_cups_ppd(self, cups, file_name=None, input_slots=None):
         if file_name is None:
-            fd, file_name = tempfile.mkstemp()
+            _fd, file_name = tempfile.mkstemp()
 
         ppd_contents = self.build_ppd(input_slots)
         with open(file_name, "w") as fp:
@@ -116,7 +116,7 @@ class TestPrintingPrinterCups(TestPrintingPrinter):
 
     @mock.patch(f"{server_model}.cups")
     def test_prepare_update_from_cups_empty_ppd(self, cups):
-        fd, file_name = tempfile.mkstemp()
+        _fd, file_name = tempfile.mkstemp()
         self.mock_cups_ppd(cups, file_name=file_name)
         with open(file_name, "w") as fp:
             fp.write(ppd_header)
